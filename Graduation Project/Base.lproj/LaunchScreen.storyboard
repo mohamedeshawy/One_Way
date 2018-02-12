@@ -22,10 +22,10 @@
                                 <rect key="frame" x="85" y="209" width="150" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="CZT-4s-rel">
+                                    <constraint firstAttribute="width" constant="150" id="6Li-Gx-Ge2">
                                         <variation key="heightClass=regular-widthClass=regular" constant="200"/>
                                     </constraint>
-                                    <constraint firstAttribute="height" constant="150" id="xMN-WY-jit">
+                                    <constraint firstAttribute="height" constant="150" id="gHu-DH-fl2">
                                         <variation key="heightClass=regular-widthClass=regular" constant="200"/>
                                     </constraint>
                                 </constraints>
@@ -33,8 +33,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1780813769" green="0.1780813769" blue="0.1780813769" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ZsY-cv-itj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Nl3-GA-4HW"/>
-                            <constraint firstItem="ZsY-cv-itj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="sLa-8f-dow"/>
+                            <constraint firstItem="ZsY-cv-itj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ht2-oq-FZ5"/>
+                            <constraint firstItem="ZsY-cv-itj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nhx-1x-Vb2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
