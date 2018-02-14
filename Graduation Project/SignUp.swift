@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class SignUp: UIViewController {
+class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -18,15 +19,36 @@ class SignUp: UIViewController {
     @IBOutlet weak var re_passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     var passengerOrDriver = false     // passenger = false  ,   driver = true
+    let imagePicker = UIImagePickerController()
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        imagePicker.delegate = self
         let font = UIFont.systemFont(ofSize: 18)
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font],
                                                 for: .normal)
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
+        self.imageView.addGestureRecognizer(gesture)
+
+    }
+    @objc func someAction(_ sender:UITapGestureRecognizer){
+        // do other task
+        imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .scaleAspectFill
+            imageView.image = pickedImage
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -40,7 +62,7 @@ class SignUp: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password, completion: {
             (user,error) in
             if let error=error{
-                print(error)
+                self.errorLabel.text = error.localizedDescription
                 return
             }
             guard let uid=user?.uid else {

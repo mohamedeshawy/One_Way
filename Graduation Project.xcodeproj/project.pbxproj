@@ -13,6 +13,7 @@
 		815A97752030B98300723565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815A97732030B98300723565 /* LaunchScreen.storyboard */; };
 		81B094242031AB2300EDC9FE /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B094232031AB2300EDC9FE /* SignUp.swift */; };
 		81B9F99D2031C4E800B81490 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81B9F99C2031C4E800B81490 /* GoogleService-Info.plist */; };
+		81BB4F2C2034BCE100F447DC /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB4F2B2034BCE000F447DC /* SignIn.swift */; };
 		C4BDBA59339C678DC3E38DCC /* Pods_Graduation_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B13A74F7869725CDA6AF23A /* Pods_Graduation_Project.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		815A97762030B98300723565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81B094232031AB2300EDC9FE /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		81B9F99C2031C4E800B81490 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		81BB4F2B2034BCE000F447DC /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		AEDC75474D2B1B00211409E2 /* Pods-Graduation Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Graduation Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Graduation Project/Pods-Graduation Project.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +75,7 @@
 			children = (
 				815A976A2030B98200723565 /* AppDelegate.swift */,
 				81B094232031AB2300EDC9FE /* SignUp.swift */,
+				81BB4F2B2034BCE000F447DC /* SignIn.swift */,
 				815A976E2030B98300723565 /* Main.storyboard */,
 				815A97712030B98300723565 /* Assets.xcassets */,
 				815A97732030B98300723565 /* LaunchScreen.storyboard */,
@@ -170,7 +173,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Graduation Project/Pods-Graduation Project-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				815A976B2030B98200723565 /* AppDelegate.swift in Sources */,
+				81BB4F2C2034BCE100F447DC /* SignIn.swift in Sources */,
 				81B094242031AB2300EDC9FE /* SignUp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
