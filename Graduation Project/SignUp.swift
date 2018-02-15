@@ -59,6 +59,22 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
             print("the form not valid !")
             return
         }
+        if name == ""{
+            self.errorLabel.text = "*name is required"
+        }
+        else if email == ""{
+            self.errorLabel.text = "*email is required"
+        }
+        else if passwordTextField.text == ""{
+            self.errorLabel.text = "*password is required"
+        }
+        else if passwordTextField.text != password{
+            self.errorLabel.text = "password is not matched"
+        }
+        else if phone == "" {
+            self.errorLabel.text = "*phone is required"
+        }
+        else {
         Auth.auth().createUser(withEmail: email, password: password, completion: {
             (user,error) in
             if let error=error{
@@ -69,7 +85,7 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
                 return
             }
             self.errorLabel.text = ""
-            let ref = Database.database().reference(fromURL: "https://graduationproject-f90fc.firebaseio.com/")
+            let ref = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/")
             if self.passengerOrDriver{ //driver
                 let driverReference = ref.child("drivers").child(uid)
                 let values = ["name" : name ,"phone" : phone]
@@ -82,6 +98,7 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
             }
             print("success!")
         })
+        }
         
     }
     @IBAction func segmentedControl(_ sender: Any) {

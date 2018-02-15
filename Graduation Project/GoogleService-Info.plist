@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>462710007119-7eq14lfr94440pkamq838ssii4gc89cg.apps.googleusercontent.com</string>
+	<string>1071247204928-lf6p19061jf5g5pmbkl3vu3iibcdop6e.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.462710007119-7eq14lfr94440pkamq838ssii4gc89cg</string>
+	<string>com.googleusercontent.apps.1071247204928-lf6p19061jf5g5pmbkl3vu3iibcdop6e</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC8dSAB1nB191LsiOXV0xqQ4kJ6NmrUing</string>
+	<string>AIzaSyCmKut8PaCxXSGevgNh6cgg0LYHSPQIt0o</string>
 	<key>GCM_SENDER_ID</key>
-	<string>462710007119</string>
+	<string>1071247204928</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>FCI-SCU.Graduation-Project</string>
 	<key>PROJECT_ID</key>
-	<string>graduationproject-f90fc</string>
+	<string>oneway-500ad</string>
 	<key>STORAGE_BUCKET</key>
-	<string>graduationproject-f90fc.appspot.com</string>
+	<string>oneway-500ad.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:462710007119:ios:679ceef3eaf9ff0e</string>
+	<string>1:1071247204928:ios:679ceef3eaf9ff0e</string>
 	<key>DATABASE_URL</key>
-	<string>https://graduationproject-f90fc.firebaseio.com</string>
+	<string>https://oneway-500ad.firebaseio.com</string>
 </dict>
 </plist>
