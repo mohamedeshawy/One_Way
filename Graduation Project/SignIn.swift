@@ -24,6 +24,7 @@ class SignIn: UIViewController {
     }
 
     @IBAction func login(_ sender: Any) {
+        
     }
     @IBAction func segmentedControl(_ sender: Any) {
     }
