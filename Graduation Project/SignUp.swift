@@ -5,10 +5,10 @@
 //  Created by Mohamed Eshawy on 2/12/18.
 //  Copyright © 2018 Mohamed Eshawy. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import FirebaseDatabase
+import SDWebImage
 
 class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
     @IBOutlet weak var imageView: UIImageView!
@@ -37,10 +37,11 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
     @objc func someAction(_ sender:UITapGestureRecognizer){
         // do other task
         imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             imageView.contentMode = .scaleAspectFill
             imageView.image = pickedImage
         }
@@ -84,24 +85,53 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
                 guard let uid=user?.uid else {
                     return
                 }
+                guard let image=self.imageView.image else{
+                    return
+                }
                 self.errorLabel.text = ""
                 let ref = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/")
+                let imgRef = Storage.storage().reference(forURL: "gs://oneway-500ad.appspot.com/")
+                if let ImageData = UIImageJPEGRepresentation(image, 0.8){
                 if self.passengerOrDriver{ //driver
-                    let driverReference = ref.child("drivers").child(uid)
-                    let data : Dictionary<String, Any> = ["Name" : name, "Email":email, "Password" : password, "Phone_Number" : phone]
-                    driverReference.updateChildValues(data)
+                    let driverImageRef = imgRef.child("drivers").child(uid+"/UserImage.jpg")
+                    driverImageRef.putData(ImageData, metadata: nil, completion: {
+                        (metaData,error) in
+                        if let error = error {
+                            print (error.localizedDescription)
+                            return
+                        }
+                        else {
+                            let downloadURL = metaData!.downloadURL()!.absoluteString
+                            let driverReference = ref.child("drivers").child(uid)
+                            let data = ["Name" : name, "Email":email, "Password" : password, "Phone_Number" : phone, "downloadURL": downloadURL]
+                            driverReference.updateChildValues(data)
+                        }
+                    })
                 }
                 else {//passenger
-                    let passengerReference = ref.child("passengers").child(uid)
-                    let data : Dictionary<String, Any> = ["Name" : name, "Email":email, "Password" : password, "Phone_Number" : phone]
-                    passengerReference.updateChildValues(data)
+                    let passengerImageRef = imgRef.child("passengers").child(uid+"/UserImage.jpg")
+                    passengerImageRef.putData(ImageData, metadata: nil, completion: {
+                        (metaData,error) in
+                        if let error = error {
+                            self.errorLabel.text = error.localizedDescription
+                            return
+                        }
+                        else {
+                            let downloadURL = metaData!.downloadURL()!.absoluteString
+                            let passengerReference = ref.child("passengers").child(uid)
+                            let data = ["Name" : name, "Email":email, "Password" : password, "Phone_Number" : phone, "downloadURL": downloadURL]
+                            passengerReference.updateChildValues(data)
+                        }
+                    })
                 }
                 print("success!")
+                }
             })
         }
         
     }
     @IBAction func segmentedControl(_ sender: Any) {
+        imageView.image = UIImage(named: "name")
         nameTextField.text = ""
         emailTextField.text = ""
         passwordTextField.text = ""
