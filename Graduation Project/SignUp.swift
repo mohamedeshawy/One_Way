@@ -20,11 +20,11 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
     @IBOutlet weak var errorLabel: UILabel!
     var passengerOrDriver = false     // passenger = false  ,   driver = true
     let imagePicker = UIImagePickerController()
-
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         imagePicker.delegate = self
         let font = UIFont.systemFont(ofSize: 18)
@@ -32,7 +32,7 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
                                                 for: .normal)
         let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
         self.imageView.addGestureRecognizer(gesture)
-
+        
     }
     @objc func someAction(_ sender:UITapGestureRecognizer){
         // do other task
@@ -53,7 +53,7 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
     @IBAction func register(_ sender: Any) {
         guard let email = emailTextField.text , let password = re_passwordTextField.text,let name = nameTextField.text,let phone = phoneTextField.text  else {
             print("the form not valid !")
@@ -75,29 +75,29 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
             self.errorLabel.text = "*phone is required"
         }
         else {
-        Auth.auth().createUser(withEmail: email, password: password, completion: {
-            (user,error) in
-            if let error=error{
-                self.errorLabel.text = error.localizedDescription
-                return
-            }
-            guard let uid=user?.uid else {
-                return
-            }
-            self.errorLabel.text = ""
-            let ref = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/")
-            if self.passengerOrDriver{ //driver
-                let driverReference = ref.child("drivers").child(uid)
-                let values = ["name" : name ,"phone" : phone]
-                driverReference.updateChildValues(values)
-            }
-            else {//passenger
-                let passengerReference = ref.child("passenger").child(uid)
-                let values = ["name" : name ,"phone" : phone]
-                passengerReference.updateChildValues(values)
-            }
-            print("success!")
-        })
+            Auth.auth().createUser(withEmail: email, password: password, completion: {
+                (user,error) in
+                if let error=error{
+                    self.errorLabel.text = error.localizedDescription
+                    return
+                }
+                guard let uid=user?.uid else {
+                    return
+                }
+                self.errorLabel.text = ""
+                let ref = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/")
+                if self.passengerOrDriver{ //driver
+                    let driverReference = ref.child("drivers").child(uid)
+                    let data : Dictionary<String, Any> = ["Name" : name, "Email":email, "Password" : password, "Phone_Number" : phone]
+                    driverReference.updateChildValues(data)
+                }
+                else {//passenger
+                    let passengerReference = ref.child("passengers").child(uid)
+                    let data : Dictionary<String, Any> = ["Name" : name, "Email":email, "Password" : password, "Phone_Number" : phone]
+                    passengerReference.updateChildValues(data)
+                }
+                print("success!")
+            })
         }
         
     }
