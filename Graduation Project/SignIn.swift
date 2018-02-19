@@ -53,15 +53,19 @@ class SignIn: UIViewController {
                             self.errorLabel.text = ""
                             let user = Auth.auth().currentUser
                             let  uid = user?.uid
-                            
+                           
                             rootRef.child("passengers").child(uid!).observeSingleEvent(of: .value, with: {(snapshot: DataSnapshot) in
-                                
                                 if (snapshot.exists()) {
                                     // is a passenger
+                                    let data = snapshot.value as! NSDictionary
+                                    print(data)
+                                    let name = data["Name"] as? String
+                                    let email = data["Email"] as? String
+                                    let phoneNo = data["Phone_Number"] as? String
+                                    let photoURL = data["downloadURL"] as? String
+                Model.init(uid: uid!, name: name!, email: email!, phone: phoneNo!, photoUrl: photoURL!)
                                     print("logged in as a passenger")
-                                    
                                     // move to map view of a passenger
-                                    
                                 }
                                 else{
                                     self.errorLabel.text = "You Are not A Passenger"
@@ -75,7 +79,6 @@ class SignIn: UIViewController {
                 //if user is a driver
             else if self.passengerOrDriver == true{
                 if user != nil {
-                    
                     Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion:{ (user,error) in
                         if error != nil{
                             self.errorLabel.text = error?.localizedDescription
@@ -84,13 +87,17 @@ class SignIn: UIViewController {
                             self.errorLabel.text = ""
                             let user = Auth.auth().currentUser
                             let  uid = user?.uid
-                            
                             rootRef.child("drivers").child(uid!).observeSingleEvent(of: .value, with: {(snapshot: DataSnapshot) in
-                                
                                 if (snapshot.exists()) {
+                                    let data = snapshot.value as! NSDictionary
+                                    let name = data["Name"] as? String
+                                    let email = data["Email"] as? String
+                                    let phoneNo = data["Phone_Number"] as? String
+                                    let photoURL = data["downloadURL"] as? String
+                                    
+                    Model.init(uid: uid!, name: name!, email: email!, phone: phoneNo!, photoUrl: photoURL!)
                                     // is a driver
                                     print("logged in as a driver")
-                                    
                                     // move to map view of a driver
                                 }
                                 else{
@@ -103,7 +110,6 @@ class SignIn: UIViewController {
             }
             
         })
-        
         
     }
     
