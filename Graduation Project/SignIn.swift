@@ -21,6 +21,7 @@ class SignIn: UIViewController {
     
     var passengerOrDriver : Bool = false  // passenger = false  ,   driver = true
     // load From Database
+    var model : Model?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,18 +53,22 @@ class SignIn: UIViewController {
                         else{
                             self.errorLabel.text = ""
                             let user = Auth.auth().currentUser
-                            let  uid = user?.uid
-                           
-                            rootRef.child("passengers").child(uid!).observeSingleEvent(of: .value, with: {(snapshot: DataSnapshot) in
+                            guard let uid = user?.uid else {
+                                return
+                            }
+                            rootRef.child("passengers").child(uid).observeSingleEvent(of: .value, with: {(snapshot: DataSnapshot) in
                                 if (snapshot.exists()) {
                                     // is a passenger
                                     let data = snapshot.value as! NSDictionary
-                                    print(data)
-                                    let name = data["Name"] as? String
-                                    let email = data["Email"] as? String
-                                    let phoneNo = data["Phone_Number"] as? String
-                                    let photoURL = data["downloadURL"] as? String
-                Model.init(uid: uid!, name: name!, email: email!, phone: phoneNo!, photoUrl: photoURL!)
+                                    let OptionalName = data["Name"] as? String
+                                    let OptionalEmail = data["Email"] as? String
+                                    let OptionalPhone = data["Phone_Number"] as? String
+                                    let OptionalPhotoURL = data["downloadURL"] as? String
+                                    guard let name = OptionalName,let email = OptionalEmail,let phone = OptionalPhone,let photoUrl=OptionalPhotoURL else {
+                                        print("the name or email or phone or photoUrl is a nil value")
+                                        return
+                                    }
+                                    self.model = Model(uid: uid, name: name, email: email, phone: phone, photoUrl: photoUrl)
                                     print("logged in as a passenger")
                                     // move to map view of a passenger
                                 }
@@ -86,16 +91,22 @@ class SignIn: UIViewController {
                         else{
                             self.errorLabel.text = ""
                             let user = Auth.auth().currentUser
-                            let  uid = user?.uid
-                            rootRef.child("drivers").child(uid!).observeSingleEvent(of: .value, with: {(snapshot: DataSnapshot) in
+                            guard let uid = user?.uid else {
+                                return
+                            }
+                            rootRef.child("drivers").child(uid).observeSingleEvent(of: .value, with: {(snapshot: DataSnapshot) in
                                 if (snapshot.exists()) {
                                     let data = snapshot.value as! NSDictionary
-                                    let name = data["Name"] as? String
-                                    let email = data["Email"] as? String
-                                    let phoneNo = data["Phone_Number"] as? String
-                                    let photoURL = data["downloadURL"] as? String
+                                    let OptionalName = data["Name"] as? String
+                                    let OptionalEmail = data["Email"] as? String
+                                    let OptionalPhone = data["Phone_Number"] as? String
+                                    let OptionalPhotoURL = data["downloadURL"] as? String
+                                    guard let name = OptionalName,let email = OptionalEmail,let phone = OptionalPhone,let photoUrl=OptionalPhotoURL else {
+                                        print("the name or email or phone or photoUrl is a nil value")
+                                        return
+                                    }
                                     
-                    Model.init(uid: uid!, name: name!, email: email!, phone: phoneNo!, photoUrl: photoURL!)
+                                    self.model = Model(uid: uid, name: name, email: email, phone: phone, photoUrl: photoUrl)
                                     // is a driver
                                     print("logged in as a driver")
                                     // move to map view of a driver
