@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SDWebImage
+import FirebaseStorage
 
 class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
     @IBOutlet weak var imageView: UIImageView!
