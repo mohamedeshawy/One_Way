@@ -303,11 +303,43 @@
                         <outlet property="phoneTextField" destination="61W-N9-vug" id="XrG-Iq-iuR"/>
                         <outlet property="re_passwordTextField" destination="y1e-Vc-MlH" id="Vzw-0a-KfS"/>
                         <outlet property="segmentedControl" destination="WXr-3H-2qz" id="SYx-La-Q5T"/>
+                        <segue destination="wft-g0-heJ" kind="presentation" identifier="passenger" id="TJb-lE-YHG"/>
+                        <segue destination="JUM-Cd-0VR" kind="presentation" identifier="driver" id="Hk5-MC-Yf4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1646" y="112"/>
+        </scene>
+        <!--Driver Map-->
+        <scene sceneID="LaN-Rg-Lal">
+            <objects>
+                <viewController storyboardIdentifier="driver" id="JUM-Cd-0VR" customClass="DriverMap" customModule="Graduation_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ktc-Ws-8Gj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="ctX-XA-vcz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EsK-vf-KH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2531" y="565"/>
+        </scene>
+        <!--Passenger Map-->
+        <scene sceneID="fe7-0Z-9xF">
+            <objects>
+                <viewController storyboardIdentifier="passenger" id="wft-g0-heJ" customClass="PassengerMap" customModule="Graduation_Project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VRd-Ls-Rqh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="G3W-KT-Sg2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vzc-sM-vZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2569" y="-165"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="b0V-xg-PNV">

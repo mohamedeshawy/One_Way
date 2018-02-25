@@ -71,6 +71,9 @@ class SignIn: UIViewController {
                                     self.model = Model(uid: uid, name: name, email: email, phone: phone, photoUrl: photoUrl)
                                     print("logged in as a passenger")
                                     // move to map view of a passenger
+                                    let passengerVC = self.storyboard?.instantiateViewController(withIdentifier: "passenger") as! PassengerMap
+                                    passengerVC.passenger = self.model
+                                    self.present(passengerVC, animated: true, completion: nil)
                                 }
                                 else{
                                     self.errorLabel.text = "You Are not A Passenger"
@@ -110,6 +113,9 @@ class SignIn: UIViewController {
                                     // is a driver
                                     print("logged in as a driver")
                                     // move to map view of a driver
+                                    let driverVC = self.storyboard?.instantiateViewController(withIdentifier: "driver") as! DriverMap
+                                    driverVC.driver = self.model
+                                    self.present(driverVC, animated: true, completion: nil)
                                 }
                                 else{
                                     self.errorLabel.text = "You Are not A Driver"

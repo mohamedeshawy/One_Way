@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-import SDWebImage
 import FirebaseStorage
 
 class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
@@ -21,6 +20,7 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
     @IBOutlet weak var errorLabel: UILabel!
     var passengerOrDriver = false     // passenger = false  ,   driver = true
     let imagePicker = UIImagePickerController()
+     var model : Model?
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     override func viewDidLoad() {
@@ -106,6 +106,9 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
                             let driverReference = ref.child("drivers").child(uid)
                             let data = ["Name" : name, "Email":email, "Password" : password, "Phone_Number" : phone, "downloadURL": downloadURL]
                             driverReference.updateChildValues(data)
+                            print("success signup as driver")
+                            self.model = Model(uid: uid, name: name, email: email, phone: phone, photoUrl: downloadURL)
+                            self.performSegue(withIdentifier: "driver", sender: self)
                         }
                     })
                 }
@@ -122,10 +125,12 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
                             let passengerReference = ref.child("passengers").child(uid)
                             let data = ["Name" : name, "Email":email, "Password" : password, "Phone_Number" : phone, "downloadURL": downloadURL]
                             passengerReference.updateChildValues(data)
+                             print("success signup as passenger")
+                            self.model = Model(uid: uid, name: name, email: email, phone: phone, photoUrl: downloadURL)
+                            self.performSegue(withIdentifier: "passenger", sender: self)
                         }
                     })
                 }
-                print("success!")
                 }
             })
         }
@@ -147,14 +152,21 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
             print("driver")
         }
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "passenger" {
+            let passengerVC = segue.destination as? PassengerMap
+            passengerVC?.passenger  = self.model
+        }
+        else if segue.identifier == "driver" {
+            let driverVC = segue.destination as? DriverMap
+            driverVC?.driver = self.model
+        }
     }
-    */
 
 }

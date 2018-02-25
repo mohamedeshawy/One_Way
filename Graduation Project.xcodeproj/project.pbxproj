@@ -11,6 +11,8 @@
 		815A97702030B98300723565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815A976E2030B98300723565 /* Main.storyboard */; };
 		815A97722030B98300723565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815A97712030B98300723565 /* Assets.xcassets */; };
 		815A97752030B98300723565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815A97732030B98300723565 /* LaunchScreen.storyboard */; };
+		817B55202043298800BC1F6E /* PassengerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B551F2043298800BC1F6E /* PassengerMap.swift */; };
+		817B55222043299C00BC1F6E /* DriverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B55212043299C00BC1F6E /* DriverMap.swift */; };
 		81B094242031AB2300EDC9FE /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B094232031AB2300EDC9FE /* SignUp.swift */; };
 		81BB4F2C2034BCE100F447DC /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB4F2B2034BCE000F447DC /* SignIn.swift */; };
 		81C216E5203508B4000FF262 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81C216E4203508B4000FF262 /* GoogleService-Info.plist */; };
@@ -27,6 +29,8 @@
 		815A97712030B98300723565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		815A97742030B98300723565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		815A97762030B98300723565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		817B551F2043298800BC1F6E /* PassengerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerMap.swift; sourceTree = "<group>"; };
+		817B55212043299C00BC1F6E /* DriverMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverMap.swift; sourceTree = "<group>"; };
 		81B094232031AB2300EDC9FE /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		81BB4F2B2034BCE000F447DC /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		81C216E4203508B4000FF262 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 				815A976A2030B98200723565 /* AppDelegate.swift */,
 				81B094232031AB2300EDC9FE /* SignUp.swift */,
 				81BB4F2B2034BCE000F447DC /* SignIn.swift */,
+				817B551F2043298800BC1F6E /* PassengerMap.swift */,
+				817B55212043299C00BC1F6E /* DriverMap.swift */,
 				815A976E2030B98300723565 /* Main.storyboard */,
 				815A97712030B98300723565 /* Assets.xcassets */,
 				815A97732030B98300723565 /* LaunchScreen.storyboard */,
@@ -184,7 +190,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Graduation Project/Pods-Graduation Project-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -252,7 +258,9 @@
 			files = (
 				815A976B2030B98200723565 /* AppDelegate.swift in Sources */,
 				81BB4F2C2034BCE100F447DC /* SignIn.swift in Sources */,
+				817B55202043298800BC1F6E /* PassengerMap.swift in Sources */,
 				81B094242031AB2300EDC9FE /* SignUp.swift in Sources */,
+				817B55222043299C00BC1F6E /* DriverMap.swift in Sources */,
 				9304C746203AF30B00EFB46C /* model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
