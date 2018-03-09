@@ -11,8 +11,6 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-
-
 class SignIn: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var emailTextField: UITextField!
@@ -26,9 +24,6 @@ class SignIn: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
         // Do any additional setup after loading the view.
         let font = UIFont.systemFont(ofSize: 18)
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font],
@@ -36,15 +31,10 @@ class SignIn: UIViewController {
     }
     
     // MARK:- Sign IN
-    
     @IBAction func login(_ sender: Any) {
-        
-        
         let rootRef = Database.database().reference()
         Auth.auth().addStateDidChangeListener({auth, user in
-            
             if self.passengerOrDriver == false { // if user is a passenger
-                
                 if user != nil {
                     Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion:{ (user,error) in
                         if error != nil{
@@ -108,7 +98,6 @@ class SignIn: UIViewController {
                                         print("the name or email or phone or photoUrl is a nil value")
                                         return
                                     }
-                                    
                                     self.model = Model(uid: uid, name: name, email: email, phone: phone, photoUrl: photoUrl)
                                     // is a driver
                                     print("logged in as a driver")

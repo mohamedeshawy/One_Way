@@ -12,6 +12,7 @@ target 'Graduation Project' do
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
 	pod 'Alamofire', '~> 4.5'
+	pod 'SwiftyJSON'
 	pod 'SDWebImage/WebP'
 
 end
