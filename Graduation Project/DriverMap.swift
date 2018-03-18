@@ -15,7 +15,7 @@ class DriverMap: UIViewController,CLLocationManagerDelegate {
     var driver : Model?
     let locationManager = CLLocationManager()
     var currentLocation : CLLocation?
-    var steps : [RouteStep] = []
+    var legs : [Legs] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,18 +42,16 @@ class DriverMap: UIViewController,CLLocationManagerDelegate {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                self.parseJSON(legs: json["routes"].array![0]["legs"])
+                self.parseJSON(json: json["routes"].array![0]["legs"])
             case .failure(let error):
                 print(error)
             }
         }
         locationManager.stopUpdatingLocation()
     }
-    func parseJSON(legs:JSON) {
+    func parseJSON(json:JSON) {
         print("start parsing...")
-        for (_,subJson):(String, JSON) in legs {
-            // Do something you want
-            //print(subJson["distance"]["text"])
+        for (_,subJson):(String, JSON) in json {
             let distance : String = subJson["distance"]["text"].stringValue
             let duration : String = subJson["duration"]["text"].stringValue
             let end_address : String = subJson["end_address"].stringValue
@@ -62,10 +60,14 @@ class DriverMap: UIViewController,CLLocationManagerDelegate {
             let start_address : String = subJson["start_address"].stringValue
             let start_location_lat : String = subJson["start_location"]["lat"].stringValue
             let start_location_lng : String = subJson["start_location"]["lng"].stringValue
-            let routeStep = RouteStep(distance: distance, duration: duration, end_address: end_address, end_location_lat: end_location_lat, end_location_lng: end_location_lng, start_address: start_address, start_location_lat: start_location_lat, start_location_lng: start_location_lng)
-            steps.append(routeStep)
+            var steps : [Step] = []
+            for (_,sub):(String, JSON) in subJson["steps"] {
+                let step = Step(distance: sub["distance"]["text"].stringValue, duration: sub["duration"]["text"].stringValue, end_location_lat: sub["end_location"]["lat"].stringValue, end_location_lng: sub["end_location"]["lng"].stringValue, start_location_lat: sub["start_location"]["lat"].stringValue, start_location_lng: sub["start_location"]["lng"].stringValue)
+                steps.append(step)
+            }
+            let leg = Legs(distance: distance, duration: duration, end_address: end_address, end_location_lat: end_location_lat, end_location_lng: end_location_lng, start_address: start_address, start_location_lat: start_location_lat, start_location_lng: start_location_lng, steps: steps)
+            legs.append(leg)
         }
-        print(steps.count)
     }
     /*
     // MARK: - Navigation
