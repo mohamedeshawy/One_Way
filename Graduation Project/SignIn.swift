@@ -39,6 +39,7 @@ class SignIn: UIViewController {
                     Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion:{ (user,error) in
                         if error != nil{
                             self.errorLabel.text = error?.localizedDescription
+                            print(self.errorLabel.text!)
                         }
                         else{
                             self.errorLabel.text = ""
