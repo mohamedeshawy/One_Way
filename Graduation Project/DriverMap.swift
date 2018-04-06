@@ -24,12 +24,11 @@ class DriverMap: UIViewController, MGLMapViewDelegate, NavigationViewControllerD
     
     var legs : [Legs] = []
     
-    @IBOutlet weak var mymap: MGLMapView!
     var timer: Timer?
     var polylineSource: MGLShapeSource?
     var currentIndex = 1
     var allCoordinates: [CLLocationCoordinate2D]!
-   // var locations = [String]()
+ 
     var locations_lat = [String]()
     var locations_lng = [String]()
     var arrayOfLocations = Array<String>()
@@ -50,7 +49,7 @@ class DriverMap: UIViewController, MGLMapViewDelegate, NavigationViewControllerD
         mapView = GMSMapView.map(withFrame: CGRect(x: 100, y: 100, width: 400, height: 550), camera: camera)
         mapView?.center = self.view.center
         self.view.addSubview(mapView!)
-        // MapView = mapView
+      
         mapView.delegate = self as? GMSMapViewDelegate
         mapView.isMyLocationEnabled = true
         mapView.camera = camera
@@ -62,11 +61,6 @@ class DriverMap: UIViewController, MGLMapViewDelegate, NavigationViewControllerD
             return
         }
         print("name : \(driver.name)")
-        
-        // Draw Map
-      //  mapView = MGLMapView(frame: mymap.bounds)
-      //  mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
     }
     
     // Mark: function to create markers
@@ -120,7 +114,6 @@ class DriverMap: UIViewController, MGLMapViewDelegate, NavigationViewControllerD
                 {
                     let routeOverviewPolyline = route["overview_polyline"].dictionary
                     let points = routeOverviewPolyline?["points"]?.stringValue
-                    //  print("points : \(points as! String)")
                     let path = GMSPath.init(fromEncodedPath: points!)
                     let polyline = GMSPolyline.init(path: path)
                     polyline.strokeWidth = 4
@@ -152,40 +145,6 @@ class DriverMap: UIViewController, MGLMapViewDelegate, NavigationViewControllerD
             legs.append(leg)
         }
     }
-   /*     print(location)
-        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=27.856471,34.279848000000015&destination= 27.180494,33.80756599999995&waypoints=optimize:true| 27.856471,34.279848000000015 |29.9668343,32.54980690000002|31.26528929999999,32.301866099999984|30.5964923,32.27145870000004&key=AIzaSyC46XXMqpzxbotnLhoBKR1X30cdV4pjhks".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)!)
-        Alamofire.request(url!, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                self.parseJSON(json: json["routes"].array![0]["legs"])
-            case .failure(let error):
-                print(error)
-            }
-        }
-        locationManager.stopUpdatingLocation()
-    }
-    func parseJSON(json:JSON) {
-        print("start parsing...")
-        for (_,subJson):(String, JSON) in json {
-            let distance : String = subJson["distance"]["text"].stringValue
-            let duration : String = subJson["duration"]["text"].stringValue
-            let end_address : String = subJson["end_address"].stringValue
-            let end_location_lat : String = subJson["end_location"]["lat"].stringValue
-            let end_location_lng : String = subJson["end_location"]["lng"].stringValue
-            let start_address : String = subJson["start_address"].stringValue
-            let start_location_lat : String = subJson["start_location"]["lat"].stringValue
-            let start_location_lng : String = subJson["start_location"]["lng"].stringValue
-            var steps : [Step] = []
-            for (_,sub):(String, JSON) in subJson["steps"] {
-                 let step = Step(distance: sub["distance"]["text"].stringValue, duration: sub["duration"]["text"].stringValue, end_location_lat: sub["end_location"]["lat"].stringValue, end_location_lng: sub["end_location"]["lng"].stringValue, start_location_lat: sub["start_location"]["lat"].stringValue, start_location_lng: sub["start_location"]["lng"].stringValue)
-                steps.append(step)
-            }
-            let leg = Legs(distance: distance, duration: duration, end_address: end_address, end_location_lat: end_location_lat, end_location_lng: end_location_lng, start_address: start_address, start_location_lat: start_location_lat, start_location_lng: start_location_lng, steps: steps)
-            legs.append(leg)
-        }
-    }*/
-    
     //Mark:   start Navigation
     func startNavigation(){
         
