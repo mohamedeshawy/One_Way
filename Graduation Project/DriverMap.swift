@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import GooglePlaces
 import GoogleMaps
 import Alamofire
 import SwiftyJSON
 import MapboxCoreNavigation
 import MapboxNavigation
 import MapboxDirections
-import Mapbox
 
 class DriverMap: UIViewController, MGLMapViewDelegate, NavigationViewControllerDelegate, CLLocationManagerDelegate {
     var driver : Model?
@@ -36,7 +34,6 @@ class DriverMap: UIViewController, MGLMapViewDelegate, NavigationViewControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
@@ -45,7 +42,6 @@ class DriverMap: UIViewController, MGLMapViewDelegate, NavigationViewControllerD
         
         let camera = GMSCameraPosition.camera(withLatitude: 29.97371, longitude: 32.52627, zoom: 6.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        
         mapView = GMSMapView.map(withFrame: CGRect(x: 100, y: 100, width: 400, height: 550), camera: camera)
         mapView?.center = self.view.center
         self.view.addSubview(mapView!)
