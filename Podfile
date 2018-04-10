@@ -14,8 +14,6 @@ pod 'Firebase/Storage'
 pod 'Alamofire', '~> 4.5'
 pod 'SDWebImage/WebP'
 pod 'GoogleMaps'
-pod 'GooglePlaces'
-pod 'GooglePlacesAPI'
 pod 'SwiftyJSON'
 pod 'MapboxNavigation', '~> 0.14'
 

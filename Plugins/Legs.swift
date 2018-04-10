@@ -11,14 +11,13 @@ class Legs {
     var distance : String
     var duration : String
     var end_address : String
-    var end_location_lat : String
-    var end_location_lng : String
+    var end_location_lat : Double
+    var end_location_lng : Double
     var start_address : String
-    var start_location_lat : String
-    var start_location_lng : String
-    var Step : [Step]
+    var start_location_lat : Double
+    var start_location_lng : Double
     
-    init(distance : String,duration : String,end_address : String,end_location_lat : String,end_location_lng : String,start_address : String,start_location_lat : String,start_location_lng : String,steps : [Step]) {
+    init(distance : String,duration : String,end_address : String,end_location_lat : Double,end_location_lng : Double,start_address : String,start_location_lat : Double,start_location_lng : Double) {
         self.distance = distance
         self.duration = duration
         self.end_address = end_address
@@ -27,24 +26,7 @@ class Legs {
         self.start_address = start_address
         self.start_location_lat = start_location_lat
         self.start_location_lng = start_location_lng
-        self.Step = steps
     }
 }
-class Step {
-    var distance : String
-    var duration : String
-    var end_location_lat : String
-    var end_location_lng : String
-    var start_location_lat : String
-    var start_location_lng : String
-    
-    init(distance : String,duration : String,end_location_lat : String,end_location_lng : String,start_location_lat : String,start_location_lng : String) {
-        self.distance = distance
-        self.duration = duration
-        self.end_location_lat = end_location_lat
-        self.end_location_lng = end_location_lng
-        self.start_location_lat = start_location_lat
-        self.start_location_lng = start_location_lng
-    }
-}
+
 
