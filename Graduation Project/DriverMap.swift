@@ -68,12 +68,13 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
             print("my location is nil")
             return
         }
-        let url = URL(string :"https://maps.googleapis.com/maps/api/directions/json?origin=\(myLocation.coordinate.latitude),\(myLocation.coordinate.longitude)&destination= 27.856471,34.279848000000015&waypoints=optimize:true| 30.1197986,31.537000300000045 |30.5964923,32.27145870000004|31.26528929999999,32.301866099999984|27.2578957,33.81160669999997".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)!)
+        let url = URL(string :"https://maps.googleapis.com/maps/api/directions/json?origin=\(myLocation.coordinate.latitude),\(myLocation.coordinate.longitude)&destination= 27.856471,34.279848000000015&waypoints=optimize:true| 30.1197986,31.537000300000045 |30.5964923,32.27145870000004|31.26528929999999,32.301866099999984|27.2578957,33.81160669999997&key=AIzaSyCUvykBxZZurYGh8dgWAMI4D0E2GKoZPUA".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)!)
         Alamofire.request(url!, method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 // draw route using Polyline
+                print(json)
                 for (_,route) in json["routes"]
                 {
                     let points = route["overview_polyline"]["points"].stringValue

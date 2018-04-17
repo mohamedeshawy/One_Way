@@ -89,7 +89,7 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
                 guard let image=self.imageView.image else{
                     return
                 }
-                self.errorLabel.text = ""
+                self.errorLabel.text = ""   
                 let ref = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/")
                 let imgRef = Storage.storage().reference(forURL: "gs://oneway-500ad.appspot.com/")
                 if let ImageData = UIImageJPEGRepresentation(image, 0.8){
