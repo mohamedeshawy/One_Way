@@ -1,26 +1,27 @@
 //
-//  PassengerMap.swift
+//  Settings.swift
 //  Graduation Project
 //
-//  Created by Mohamed Eshawy on 2/25/18.
+//  Created by Mohamed Eshawy on 4/19/18.
 //  Copyright © 2018 Mohamed Eshawy. All rights reserved.
 //
 
 import UIKit
 
-class PassengerMap: UIViewController {
-    var passenger : Model?
+class Settings: UIViewController {
+    var driver : Model?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        guard let passenger = passenger else {
-            return
-        }
-        print("name : \(passenger.name)")
-    }
+                guard let driver=self.driver else {
+                    print("the driver is nil")
+                    return
+                }
+                print(driver.name)
 
+    }
 
     /*
     // MARK: - Navigation

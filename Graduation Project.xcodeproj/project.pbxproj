@@ -11,7 +11,7 @@
 		815A97702030B98300723565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815A976E2030B98300723565 /* Main.storyboard */; };
 		815A97722030B98300723565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815A97712030B98300723565 /* Assets.xcassets */; };
 		815A97752030B98300723565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815A97732030B98300723565 /* LaunchScreen.storyboard */; };
-		817B55202043298800BC1F6E /* PassengerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B551F2043298800BC1F6E /* PassengerMap.swift */; };
+		817B3E6520890A49000991DC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B3E6420890A49000991DC /* Settings.swift */; };
 		817B55222043299C00BC1F6E /* DriverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B55212043299C00BC1F6E /* DriverMap.swift */; };
 		81951E2D2051D41500E24FF1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81951E2C2051D41500E24FF1 /* MapKit.framework */; };
 		81951E2F2051F99F00E24FF1 /* Legs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81951E2E2051F99F00E24FF1 /* Legs.swift */; };
@@ -31,7 +31,7 @@
 		815A97712030B98300723565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		815A97742030B98300723565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		815A97762030B98300723565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		817B551F2043298800BC1F6E /* PassengerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerMap.swift; sourceTree = "<group>"; };
+		817B3E6420890A49000991DC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		817B55212043299C00BC1F6E /* DriverMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverMap.swift; sourceTree = "<group>"; };
 		81951E2C2051D41500E24FF1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81951E2E2051F99F00E24FF1 /* Legs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legs.swift; sourceTree = "<group>"; };
@@ -89,8 +89,8 @@
 				815A976A2030B98200723565 /* AppDelegate.swift */,
 				81B094232031AB2300EDC9FE /* SignUp.swift */,
 				81BB4F2B2034BCE000F447DC /* SignIn.swift */,
-				817B551F2043298800BC1F6E /* PassengerMap.swift */,
 				817B55212043299C00BC1F6E /* DriverMap.swift */,
+				817B3E6420890A49000991DC /* Settings.swift */,
 				815A976E2030B98300723565 /* Main.storyboard */,
 				815A97712030B98300723565 /* Assets.xcassets */,
 				815A97732030B98300723565 /* LaunchScreen.storyboard */,
@@ -294,8 +294,8 @@
 				81951E2F2051F99F00E24FF1 /* Legs.swift in Sources */,
 				815A976B2030B98200723565 /* AppDelegate.swift in Sources */,
 				81BB4F2C2034BCE100F447DC /* SignIn.swift in Sources */,
-				817B55202043298800BC1F6E /* PassengerMap.swift in Sources */,
 				81B094242031AB2300EDC9FE /* SignUp.swift in Sources */,
+				817B3E6520890A49000991DC /* Settings.swift in Sources */,
 				817B55222043299C00BC1F6E /* DriverMap.swift in Sources */,
 				9304C746203AF30B00EFB46C /* model.swift in Sources */,
 			);

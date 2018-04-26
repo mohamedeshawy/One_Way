@@ -8,8 +8,6 @@
 
 import Foundation
 class Legs {
-    var distance : String
-    var duration : String
     var end_address : String
     var end_location_lat : Double
     var end_location_lng : Double
@@ -17,9 +15,7 @@ class Legs {
     var start_location_lat : Double
     var start_location_lng : Double
     
-    init(distance : String,duration : String,end_address : String,end_location_lat : Double,end_location_lng : Double,start_address : String,start_location_lat : Double,start_location_lng : Double) {
-        self.distance = distance
-        self.duration = duration
+    init(end_address : String,end_location_lat : Double,end_location_lng : Double,start_address : String,start_location_lat : Double,start_location_lng : Double) {
         self.end_address = end_address
         self.end_location_lat = end_location_lat
         self.end_location_lng = end_location_lng
