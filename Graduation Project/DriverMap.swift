@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import GoogleMaps
 import Alamofire
 import SwiftyJSON
@@ -172,8 +173,16 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
         
         return false
     }
-    
-    
+    @IBAction func LogOut(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+        UIApplication.shared.keyWindow?.rootViewController = loginViewController
+    }
     @IBAction func start_Navigation(_ sender: Any) {
         startNavigation()
     }

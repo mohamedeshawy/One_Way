@@ -117,7 +117,8 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
         let tabVC = segue.destination as? UITabBarController
         let driverVC = tabVC?.viewControllers?.first as? DriverMap
         driverVC?.driver = self.model
-        let settingsVC = tabVC?.viewControllers?.last as? Settings
+        let navCon = tabVC?.viewControllers?.last as? UINavigationController
+        let settingsVC = navCon?.topViewController as? Settings
         settingsVC?.driver = self.model
     }
 

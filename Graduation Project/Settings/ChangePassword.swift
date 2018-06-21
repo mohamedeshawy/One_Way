@@ -1,26 +1,20 @@
 //
-//  Settings.swift
+//  ChangePassword.swift
 //  Graduation Project
 //
-//  Created by Mohamed Eshawy on 4/19/18.
+//  Created by Mohamed Eshawy on 6/20/18.
 //  Copyright © 2018 Mohamed Eshawy. All rights reserved.
 //
 
 import UIKit
 
-class Settings: UIViewController {
-    var driver : Model?
+class ChangePassword: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-                guard let driver=self.driver else {
-                    print("the driver is nil")
-                    return
-                }
-                print(driver.name)
-
+        print("change password")
     }
 
     /*

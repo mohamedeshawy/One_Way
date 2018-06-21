@@ -11,8 +11,12 @@
 		815A97702030B98300723565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815A976E2030B98300723565 /* Main.storyboard */; };
 		815A97722030B98300723565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815A97712030B98300723565 /* Assets.xcassets */; };
 		815A97752030B98300723565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815A97732030B98300723565 /* LaunchScreen.storyboard */; };
-		817B3E6520890A49000991DC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B3E6420890A49000991DC /* Settings.swift */; };
 		817B55222043299C00BC1F6E /* DriverMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817B55212043299C00BC1F6E /* DriverMap.swift */; };
+		8190FEC820DAA80600FFEDD2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8190FEC720DAA80600FFEDD2 /* Settings.swift */; };
+		8190FECA20DB233C00FFEDD2 /* ChangeEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8190FEC920DB233C00FFEDD2 /* ChangeEmail.swift */; };
+		8190FECC20DB235600FFEDD2 /* ChangeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8190FECB20DB235600FFEDD2 /* ChangeName.swift */; };
+		8190FECE20DB236F00FFEDD2 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8190FECD20DB236F00FFEDD2 /* ChangePassword.swift */; };
+		8190FED020DB238500FFEDD2 /* ChangePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8190FECF20DB238500FFEDD2 /* ChangePicture.swift */; };
 		81951E2D2051D41500E24FF1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81951E2C2051D41500E24FF1 /* MapKit.framework */; };
 		81951E2F2051F99F00E24FF1 /* Legs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81951E2E2051F99F00E24FF1 /* Legs.swift */; };
 		8196230D20866A840058739A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8196230C20866A840058739A /* GoogleService-Info.plist */; };
@@ -31,8 +35,12 @@
 		815A97712030B98300723565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		815A97742030B98300723565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		815A97762030B98300723565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		817B3E6420890A49000991DC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		817B55212043299C00BC1F6E /* DriverMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverMap.swift; sourceTree = "<group>"; };
+		8190FEC720DAA80600FFEDD2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		8190FEC920DB233C00FFEDD2 /* ChangeEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmail.swift; sourceTree = "<group>"; };
+		8190FECB20DB235600FFEDD2 /* ChangeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeName.swift; sourceTree = "<group>"; };
+		8190FECD20DB236F00FFEDD2 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
+		8190FECF20DB238500FFEDD2 /* ChangePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePicture.swift; sourceTree = "<group>"; };
 		81951E2C2051D41500E24FF1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81951E2E2051F99F00E24FF1 /* Legs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legs.swift; sourceTree = "<group>"; };
 		8196230C20866A840058739A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -90,7 +98,7 @@
 				81B094232031AB2300EDC9FE /* SignUp.swift */,
 				81BB4F2B2034BCE000F447DC /* SignIn.swift */,
 				817B55212043299C00BC1F6E /* DriverMap.swift */,
-				817B3E6420890A49000991DC /* Settings.swift */,
+				8190FED120DB239A00FFEDD2 /* Settings */,
 				815A976E2030B98300723565 /* Main.storyboard */,
 				815A97712030B98300723565 /* Assets.xcassets */,
 				815A97732030B98300723565 /* LaunchScreen.storyboard */,
@@ -98,6 +106,18 @@
 				8196230C20866A840058739A /* GoogleService-Info.plist */,
 			);
 			path = "Graduation Project";
+			sourceTree = "<group>";
+		};
+		8190FED120DB239A00FFEDD2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8190FEC720DAA80600FFEDD2 /* Settings.swift */,
+				8190FEC920DB233C00FFEDD2 /* ChangeEmail.swift */,
+				8190FECB20DB235600FFEDD2 /* ChangeName.swift */,
+				8190FECD20DB236F00FFEDD2 /* ChangePassword.swift */,
+				8190FECF20DB238500FFEDD2 /* ChangePicture.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		8D80E4F7C1133B4351E2679D /* Pods */ = {
@@ -293,9 +313,13 @@
 			files = (
 				81951E2F2051F99F00E24FF1 /* Legs.swift in Sources */,
 				815A976B2030B98200723565 /* AppDelegate.swift in Sources */,
+				8190FECE20DB236F00FFEDD2 /* ChangePassword.swift in Sources */,
+				8190FED020DB238500FFEDD2 /* ChangePicture.swift in Sources */,
+				8190FECC20DB235600FFEDD2 /* ChangeName.swift in Sources */,
+				8190FECA20DB233C00FFEDD2 /* ChangeEmail.swift in Sources */,
 				81BB4F2C2034BCE100F447DC /* SignIn.swift in Sources */,
 				81B094242031AB2300EDC9FE /* SignUp.swift in Sources */,
-				817B3E6520890A49000991DC /* Settings.swift in Sources */,
+				8190FEC820DAA80600FFEDD2 /* Settings.swift in Sources */,
 				817B55222043299C00BC1F6E /* DriverMap.swift in Sources */,
 				9304C746203AF30B00EFB46C /* model.swift in Sources */,
 			);
