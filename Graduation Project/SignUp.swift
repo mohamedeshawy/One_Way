@@ -91,7 +91,7 @@ class SignUp: UIViewController,UIImagePickerControllerDelegate , UINavigationCon
                     driverImageRef.putData(ImageData, metadata: nil, completion: {
                         (metaData,error) in
                         if let error = error {
-                            print (error.localizedDescription)
+                            self.errorLabel.text = error.localizedDescription
                             return
                         }
                         else {

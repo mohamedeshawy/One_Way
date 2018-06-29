@@ -15,14 +15,36 @@ class SignIn: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var remeber: UILabel!
     
+    @IBOutlet weak var checkImgView: UIImageView!
     // load From Database
     var model : Model?
+    var isChecked = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(remeber(_:)))
+        remeber.addGestureRecognizer(tapGesture)
+        checkImgView.addGestureRecognizer(tapGesture)
+        
+        let userDefaults = UserDefaults.standard
+        if let email = userDefaults.string(forKey: "email") , let password = userDefaults.string(forKey: "password") {
+            self.emailTextField.text = email
+            self.passwordTextField.text = password
+        }
+    }
+    @objc func remeber(_ sender:AnyObject){
+        if !isChecked {
+            isChecked = true
+            checkImgView.image = UIImage(named: "checked")
+        }
+        else {
+            isChecked = false
+            checkImgView.image = UIImage(named: "unChecked")
+        }
     }
     
     // MARK:- Sign IN
@@ -33,12 +55,17 @@ class SignIn: UIViewController {
                     Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion:{ (user,error) in
                         if error != nil{
                             self.errorLabel.text = error?.localizedDescription
-                            print(self.errorLabel.text!)
+                            return
                         }
                         else{
+                            if self.isChecked {
+                                let userDefaults = UserDefaults.standard
+                                userDefaults.set(self.emailTextField.text, forKey: "email")
+                                userDefaults.set(self.passwordTextField.text, forKey: "password")
+                                userDefaults.synchronize()
+                            }
                             self.errorLabel.text = ""
-                            let user = Auth.auth().currentUser
-                            guard let uid = user?.uid else {
+                            guard let uid = Auth.auth().currentUser?.uid else {
                                 return
                             }
                             rootRef.child("drivers").child(uid).observeSingleEvent(of: .value, with: {(snapshot: DataSnapshot) in
@@ -58,16 +85,16 @@ class SignIn: UIViewController {
                                     // move to Driver Map
                                     self.performSegue(withIdentifier: "driverFromSignIn", sender: self)
                                 }
-                                else{
-                                    self.errorLabel.text = "*Please Check Your Mode"
-                                }
                             })
                         }
                     })
                 }
             })
         }
-     // MARK: - Navigation
+    @IBAction func forgetPassword(_ sender: Any) {
+        
+    }
+    // MARK: - Navigation
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.

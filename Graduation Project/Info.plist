@@ -16,12 +16,25 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1071247204928-lf6p19061jf5g5pmbkl3vu3iibcdop6e</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1IjoibWFobW91ZGlzbWFlaWwiLCJhIjoiY2plZDBqN3RrMW95ZjMzcHI0YWMyMW92MiJ9.taQt-1JMPKplv1Ui2OBr7g</string>
+	<key>NSLocationAlways</key>
+	<string>allow to access your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need to access your location</string>
 	<key>UIBackgroundModes</key>
@@ -42,8 +55,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -52,7 +63,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlways</key>
-	<string>allow to access your location</string>
 </dict>
 </plist>

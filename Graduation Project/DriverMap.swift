@@ -180,8 +180,7 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-        UIApplication.shared.keyWindow?.rootViewController = loginViewController
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func start_Navigation(_ sender: Any) {
         startNavigation()
