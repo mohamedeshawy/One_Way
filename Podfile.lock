@@ -101,6 +101,8 @@ PODS:
   - SDWebImage/WebP (4.3.0):
     - libwebp (~> 0.5)
     - SDWebImage/Core
+  - SKActivityIndicatorView (0.1.0)
+  - SkyFloatingLabelTextField (3.4.0)
   - Solar (2.1.0)
   - SwiftyJSON (4.0.0)
   - Turf (0.0.4)
@@ -114,6 +116,8 @@ DEPENDENCIES:
   - GoogleMaps
   - MapboxNavigation (~> 0.14)
   - SDWebImage/WebP
+  - SKActivityIndicatorView (~> 0.1.0)
+  - SkyFloatingLabelTextField (~> 3.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -140,10 +144,12 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Polyline: 3d69f75bb136357e27291d439d0436c6ebda57a4
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
+  SKActivityIndicatorView: f46936f760d33eb8235333242269bf01cc9248ae
+  SkyFloatingLabelTextField: 703aa1420b697392b1e7dba25571180dde018477
   Solar: 2dc6e7cc39186cb0c8228fa08df76fb50c7d8f24
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   Turf: 6c169618fa671e3f8a7b764b5b3332053ad6110e
 
-PODFILE CHECKSUM: 507024c43753090ceb36f860d62730520b177cb0
+PODFILE CHECKSUM: 611163f4a581bb1d080f28efb44044d9f3951ed1
 
 COCOAPODS: 1.3.1

@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-
+import SKActivityIndicatorView
 class ChangePassword: UIViewController {
     var model:Model?
     @IBOutlet weak var oldPassword: UITextField!
@@ -26,7 +26,9 @@ class ChangePassword: UIViewController {
             print("model is nil")
             return
         }
+        self.errorLabel.text = ""
         if let currentUser = Auth.auth().currentUser {
+            SKActivityIndicator.show("Loading...")
             let ref = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/").child("drivers/"+currentUser.uid)
             ref.observeSingleEvent(of: .value, with: { (dataSnapshot) in
                 let data = dataSnapshot.value as! NSDictionary
@@ -36,19 +38,22 @@ class ChangePassword: UIViewController {
                     Auth.auth().currentUser?.updatePassword(to: self.newPassword.text!) { (error) in
                         if let error = error  {
                             self.errorLabel.text = error.localizedDescription
+                            SKActivityIndicator.dismiss()
+                            return
                         }
                         else {
                             self.errorLabel.text = ""
                             //Update new data in the database
                             ref.updateChildValues(["Password":"\(self.newPassword.text!)"])
                             print("password is updated")
-                            //Re Auth ....
+                            SKActivityIndicator.dismiss()
                             self.navigationController?.popViewController(animated: true)
                         }
                     }
                 }
                 else {
                     self.errorLabel.text = "Please check the old password"
+                    SKActivityIndicator.dismiss()
                     return
                 }
             })
@@ -58,15 +63,4 @@ class ChangePassword: UIViewController {
             return
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

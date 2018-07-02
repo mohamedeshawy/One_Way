@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-
+import SKActivityIndicatorView
 class ChangePhone: UIViewController {
     var model:Model?
     var myDelegate:Delegate?
@@ -28,14 +28,17 @@ class ChangePhone: UIViewController {
             print("the model is nil")
             return
         }
+        self.errorLabel.text = ""
         if Auth.auth().currentUser != nil {
+            SKActivityIndicator.show("Loading...")
             PhoneAuthProvider.provider().verifyPhoneNumber(self.newPhone.text!, uiDelegate: nil) { (verificationID, error) in
                 if let error = error {
                     self.errorLabel.text = error.localizedDescription
+                    SKActivityIndicator.dismiss()
                     return
                 }
                 // Sign in using the verificationID and the code sent to the user
-                self.errorLabel.text = "you will receive the verification code"
+                self.errorLabel.text = ""
                 let alert = UIAlertController(title: "verification".capitalized, message: "Please enter the verification code", preferredStyle: .alert)
                 alert.addTextField(configurationHandler: { (verificationCode) in
                     verificationCode.placeholder = "enter the code"
@@ -47,6 +50,7 @@ class ChangePhone: UIViewController {
                         Auth.auth().signIn(with: credential, completion: { (user, error) in
                             if let error = error {
                                 self.errorLabel.text = error.localizedDescription
+                                SKActivityIndicator.dismiss()
                                 return
                             }
                             self.errorLabel.text = ""
@@ -55,6 +59,7 @@ class ChangePhone: UIViewController {
                             print(alert.textFields![0].text!)
                             ref.updateChildValues(["Phone_Number":"\(self.newPhone.text!)"])
                             print("phone number is updated !!")
+                            SKActivityIndicator.dismiss()
                             self.navigationController?.popViewController(animated: true)
                         })
                     })
@@ -69,14 +74,4 @@ class ChangePhone: UIViewController {
             return
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

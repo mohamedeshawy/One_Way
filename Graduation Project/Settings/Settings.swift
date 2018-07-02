@@ -10,6 +10,7 @@ import SDWebImage
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import SKActivityIndicatorView
 
 class Settings: UITableViewController, Delegate ,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
     let imagePicker = UIImagePickerController()
@@ -49,6 +50,8 @@ class Settings: UITableViewController, Delegate ,UIImagePickerControllerDelegate
         self.present(imagePicker, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.errorLabel.text = ""
+        SKActivityIndicator.show("Uploading...")
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             imageView.contentMode = .scaleAspectFill
             imageView.image = pickedImage
@@ -60,6 +63,7 @@ class Settings: UITableViewController, Delegate ,UIImagePickerControllerDelegate
                     (metaData,error) in
                     if let error = error {
                         self.errorLabel.text = error.localizedDescription
+                        SKActivityIndicator.dismiss()
                         return
                     }
                     else {
@@ -67,6 +71,7 @@ class Settings: UITableViewController, Delegate ,UIImagePickerControllerDelegate
                         ref.updateChildValues(["downloadURL": downloadURL])
                         self.driver?.photoUrl = downloadURL
                         print("picture is uploaded")
+                        SKActivityIndicator.dismiss()
                     }
                 })
             }

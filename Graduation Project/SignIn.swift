@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import SKActivityIndicatorView
 class SignIn: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -49,12 +50,15 @@ class SignIn: UIViewController {
     
     // MARK:- Sign IN
     @IBAction func login(_ sender: Any) {
+        self.errorLabel.text = ""
         let rootRef = Database.database().reference()
         Auth.auth().addStateDidChangeListener({auth, user in
                 if user != nil {
+                    SKActivityIndicator.show("Loading...")
                     Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion:{ (user,error) in
                         if error != nil{
                             self.errorLabel.text = error?.localizedDescription
+                            SKActivityIndicator.dismiss()
                             return
                         }
                         else{
@@ -66,6 +70,7 @@ class SignIn: UIViewController {
                             }
                             self.errorLabel.text = ""
                             guard let uid = Auth.auth().currentUser?.uid else {
+                                SKActivityIndicator.dismiss()
                                 return
                             }
                             rootRef.child("drivers").child(uid).observeSingleEvent(of: .value, with: {(snapshot: DataSnapshot) in
@@ -77,12 +82,14 @@ class SignIn: UIViewController {
                                     let OptionalPhotoURL = data["downloadURL"] as? String
                                     guard let name = OptionalName,let email = OptionalEmail,let phone = OptionalPhone,let photoUrl=OptionalPhotoURL else {
                                         print("the name or email or phone or photoUrl is a nil value")
+                                        SKActivityIndicator.dismiss()
                                         return
                                     }
                                     self.model = Model(uid: uid, name: name, email: email, phone: phone, photoUrl: photoUrl)
                                     // is a driver
                                     print("logged in as a driver")
                                     // move to Driver Map
+                                    SKActivityIndicator.dismiss()
                                     self.performSegue(withIdentifier: "driverFromSignIn", sender: self)
                                 }
                             })

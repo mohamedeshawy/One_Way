@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-
+import SKActivityIndicatorView
 class ChangeName: UIViewController {
     var model:Model?
     var myDelegate:Delegate?
@@ -29,15 +29,17 @@ class ChangeName: UIViewController {
     }
 
     @IBAction func ChangeDone(_ sender: Any) {
+        self.errorLabel.text = ""
         if let currentUser = Auth.auth().currentUser {
+            SKActivityIndicator.show("Loading...")
             let ref = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/").child("drivers/"+currentUser.uid)
             self.errorLabel.text = ""
             //Update new data in the database
             ref.updateChildValues(["Name":"\(self.newName.text!)"])
-            
             //passing back the new data
             self.model?.name = self.newName.text!
             self.myDelegate?.passingModel(model: self.model!)
+            SKActivityIndicator.dismiss()
             self.navigationController?.popViewController(animated: true)
         }
         else {
@@ -45,14 +47,4 @@ class ChangeName: UIViewController {
             return
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
