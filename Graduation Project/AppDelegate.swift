@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import GoogleMaps
-
+import Reachability
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,6 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let reachability = Reachability()!
+        reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        }
+        reachability.whenUnreachable = { _ in
+            let alert = UIAlertController(title: "Failed Connection", message: "Check your connection", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(alertAction)
+            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
         GMSServices.provideAPIKey(googleKey)
         FirebaseApp.configure()
         return true

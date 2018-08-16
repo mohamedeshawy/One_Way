@@ -50,15 +50,27 @@ class ChangeEmail: UIViewController {
                             return
                         }
                         else {
-                            self.errorLabel.text = ""
-                            //Update new data in the database
-                            ref.updateChildValues(["Email":"\(self.newEmail.text!)"])
-                            
-                            //passing back the new data
-                            self.model?.email = self.newEmail.text!
-                            self.myDelegate?.passingModel(model: self.model!)
-                            SKActivityIndicator.dismiss()
-                            self.navigationController?.popViewController(animated: true)
+                            ref.observeSingleEvent(of: .value, with: { (data : DataSnapshot) in
+                                let dic = data.value as! NSDictionary
+                                let credential: AuthCredential = EmailAuthProvider.credential(withEmail: self.newEmail.text!, password: dic["Password"] as! String)
+                                currentUser.reauthenticate(with: credential) { error in
+                                    if let error = error {
+                                        self.errorLabel.text = error.localizedDescription
+                                        SKActivityIndicator.dismiss()
+                                        return
+                                    }
+                                    self.errorLabel.text = ""
+                                    //Update new data in the database
+                                    ref.updateChildValues(["Email":"\(self.newEmail.text!)"])
+                                    
+                                    //passing back the new data
+                                    self.model?.email = self.newEmail.text!
+                                    self.myDelegate?.passingModel(model: self.model!)
+                                    SKActivityIndicator.dismiss()
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                                
+                            })
                             }
                     }
                 }

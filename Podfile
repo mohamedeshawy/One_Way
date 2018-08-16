@@ -18,6 +18,7 @@ pod 'SwiftyJSON'
 pod 'MapboxNavigation', '~> 0.14'
 pod 'SkyFloatingLabelTextField', '~> 3.0'
 pod 'SKActivityIndicatorView', '~> 0.1.0'
+pod 'ReachabilitySwift'
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|

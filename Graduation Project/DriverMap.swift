@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 import FirebaseAuth
 import GoogleMaps
 import Alamofire
@@ -19,6 +20,8 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
     var driver : Model?
     var location : CLLocation?
     let locationManager = CLLocationManager()
+    var lat  : Any!
+    var lng : Any!
     //var mapView: GMSMapView!
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -29,6 +32,8 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
             print("the model is nil")
             return
         }
+    self.lat = 0
+        self.lng = 0
         print(driver.name)
 
         locationManager.delegate = self
@@ -43,6 +48,7 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
             print("latitude and longitude is nil")
             return
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(progressDidChange(notification:)), name: .routeControllerProgressDidChange, object: nil)
         let camera = GMSCameraPosition.camera(withLatitude: latitude!, longitude: longitude!, zoom: 6.0)
         self.mapView.camera = camera
         self.mapView.delegate = self
@@ -66,7 +72,7 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+       // updateFirebase()
         location = locations.last
         drawPath()
         self.locationManager.stopUpdatingLocation()
@@ -161,6 +167,28 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
         }
     }
     
+    @objc func progressDidChange(notification: NSNotification){
+      //  let routeProgress = notification.userInfo![RouteControllerNotificationUserInfoKey] as! RouteProgress
+        let location = notification.userInfo![RouteControllerNotificationUserInfoKey.locationKey] as! CLLocation
+        print("@@@@@@\(location)")
+      
+        self.lat = location.coordinate.latitude
+        self.lng = location.coordinate.longitude
+        print(self.lat)
+        let ref  = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/")
+        let values = ["Lat" : self.lat, "Lng" : self.lng]
+        // ref.child("Trip").updateChildValues("Driver_Location": values)
+        
+        ref.child("Trip").child("Driver_Location").updateChildValues(values as Any as! [AnyHashable : Any])
+    }
+//    func updateFirebase(){
+//        let ref  = Database.database().reference(fromURL: "https://oneway-500ad.firebaseio.com/")
+//        let values = ["Lat" : self.lat, "Lng" : self.lng]
+//       // ref.child("Trip").updateChildValues("Driver_Location": values)
+//
+//        ref.child("Trip").child("Driver_Location").updateChildValues(values as Any as! [AnyHashable : Any])
+//        }
+    
     // Show an alert when arriving at the waypoint and wait until the user to start next leg.
     func navigationViewController(_ navigationViewController: NavigationViewController, didArriveAt waypoint: Waypoint) -> Bool {
         let alert = UIAlertController(title: "Arrived at \(String(describing: waypoint.name))", message: "Continue your way?", preferredStyle: .alert)
@@ -184,6 +212,8 @@ class DriverMap: UIViewController,GMSMapViewDelegate, NavigationViewControllerDe
     }
     @IBAction func start_Navigation(_ sender: Any) {
         startNavigation()
+        //updateFirebase()
+        
     }
 }
 

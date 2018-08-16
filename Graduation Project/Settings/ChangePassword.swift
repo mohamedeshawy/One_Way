@@ -42,12 +42,24 @@ class ChangePassword: UIViewController {
                             return
                         }
                         else {
-                            self.errorLabel.text = ""
-                            //Update new data in the database
-                            ref.updateChildValues(["Password":"\(self.newPassword.text!)"])
-                            print("password is updated")
-                            SKActivityIndicator.dismiss()
-                            self.navigationController?.popViewController(animated: true)
+                            ref.observeSingleEvent(of: .value, with: { (data : DataSnapshot) in
+                                let dic = data.value as! NSDictionary
+                                let credential: AuthCredential = EmailAuthProvider.credential(withEmail: dic["Email"] as! String, password: self.newPassword.text!)
+                                currentUser.reauthenticate(with: credential) { error in
+                                    if let error = error {
+                                        self.errorLabel.text = error.localizedDescription
+                                        SKActivityIndicator.dismiss()
+                                        return
+                                    }
+                                    print("ReAuthentication Successfully!!")
+                                    self.errorLabel.text = ""
+                                    //Update new data in the database
+                                    ref.updateChildValues(["Password":"\(self.newPassword.text!)"])
+                                    print("password is updated")
+                                    SKActivityIndicator.dismiss()
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                            })
                         }
                     }
                 }
